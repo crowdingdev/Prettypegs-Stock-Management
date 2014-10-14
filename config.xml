@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+	<name>prettypegsstockmanagement</name>
+	<displayName><![CDATA[Prettypegs Stock Management]]></displayName>
+	<version><![CDATA[1.0]]></version>
+	<description><![CDATA[Prettypegs special order export system.]]></description>
+	<author><![CDATA[Linus Karlsson]]></author>
+	<tab><![CDATA[export]]></tab>
+	<is_configurable>0</is_configurable>
+	<need_instance>1</need_instance>
+	<limited_countries></limited_countries>
+</module>
