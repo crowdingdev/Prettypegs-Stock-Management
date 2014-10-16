@@ -29,7 +29,6 @@ class PrettypegsAdminStockManagementController extends ModuleAdminController
 	public function renderList() {
 
 		//$supplierArray = $this->getSuppliers();
-		echo "dodododododod";
 		return $this->context->smarty->fetch(dirname(__FILE__).'/../../views/templates/admin/display.tpl');
 
 	}
