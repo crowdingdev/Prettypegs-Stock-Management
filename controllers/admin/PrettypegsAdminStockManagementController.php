@@ -29,6 +29,13 @@ class PrettypegsAdminStockManagementController extends ModuleAdminController
 	public function renderList() {
 
 		//$supplierArray = $this->getSuppliers();
+
+		$products = Db::getInstance()->ExecuteS('SELECT * FROM `ps_cloud_gallery_image_lang` WHERE `active`= 1 ORDER BY item_order ASC, created_at ASC');
+
+  	$this->context->smarty->assign( array( 'products' => $products ) );
+		//$this->context->controller->addCSS(__DIR__.'/../../css/imagecloudgallery.css');
+    //$this->setTemplate( 'display.tpl' );
+
 		return $this->context->smarty->fetch(dirname(__FILE__).'/../../views/templates/admin/display.tpl');
 
 	}
