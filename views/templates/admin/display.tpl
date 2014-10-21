@@ -5,7 +5,8 @@
 </p>
 
 <div id="htmlcontent" class="panel">
-	<div class="panel-heading">	
-		Items
+	<div class="panel-heading">
+		{include file="{$admin_tpl_path|escape:'htmlall':'UTF-8'}product_stock_items.tpl"}
+
 	</div>
 </div>

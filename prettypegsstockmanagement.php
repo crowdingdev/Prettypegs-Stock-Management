@@ -6,6 +6,9 @@
   * @version 1.0
   *
   */
+
+//$customerReminderObj->sendMails(Tools::getValue('belvg_abandoned_customerBox'));
+
 class PrettypegsStockManagement extends Module
 {
 	private $_postErrors = array();
@@ -28,6 +31,11 @@ class PrettypegsStockManagement extends Module
 		$this->page = basename(__FILE__, '.php');
 		$this->displayName = $this->l('Prettypegs Stock Management');
 		$this->description = $this->l('Prettypegs special order export system.');
+
+		$this->module_path = _PS_MODULE_DIR_.$this->name.'/';
+		$this->uploads_path = _PS_MODULE_DIR_.$this->name.'/img/';
+		$this->admin_tpl_path = _PS_MODULE_DIR_.$this->name.'/views/templates/admin/';
+		$this->hooks_tpl_path = _PS_MODULE_DIR_.$this->name.'/views/templates/hooks/';
 
 	}
 

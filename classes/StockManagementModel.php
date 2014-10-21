@@ -1,12 +1,25 @@
 <?php
 
-class DBQueryHelper extends ObjectModel
+class StockManagementModel extends ObjectModel
 {
+
 
 	/**
 	* @author Linus Karlsson
 	*/
-	public static function insertProductStock($id_product_attribute, quantity)
+	public static function getAllProductsStocks()
+	{
+		$result = Db::getInstance()->ExecuteS('
+			SELECT * FROM '._DB_PREFIX_.'prettypegs_stock_management psm'
+			//. ' INNER JOIN '._DB_PREFIX_.'product p ON p.id_product = psm.id_product' #TODO: Get the product name for the default lanugage.
+			);
+		return $result;
+	}
+
+	/**
+	* @author Linus Karlsson
+	*/
+	public static function insertProductStock($id_product_attribute, $quantity)
 	{
 		$sql = 'INSERT INTO '.
 		_DB_PREFIX_.'prettypegs_stock_management '.
@@ -23,17 +36,6 @@ class DBQueryHelper extends ObjectModel
 		else{
 			return false;
 		}
-	}
-
-	/**
-	* @author Linus Karlsson
-	*/
-	public static function getAllProductsStocks()
-	{
-		$result = Db::getInstance()->ExecuteS('
-			SELECT * FROM '._DB_PREFIX_.'prettypegs_stock_management '
-			);
-		return $result;
 	}
 
 	/**
