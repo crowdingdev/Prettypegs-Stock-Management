@@ -9,9 +9,10 @@ class StockManagementModel extends ObjectModel
 	*/
 	public static function getAllProductsStocks()
 	{
-		$result = Db::getInstance()->ExecuteS('
-			SELECT * FROM '._DB_PREFIX_.'prettypegs_stock_management psm'
-			//. ' INNER JOIN '._DB_PREFIX_.'product p ON p.id_product = psm.id_product' #TODO: Get the product name for the default lanugage.
+		$result = Db::getInstance()->ExecuteS(
+			' SELECT * FROM '._DB_PREFIX_.'prettypegs_stock_management '
+			//' SELECT psm.*, pl.name as name FROM '._DB_PREFIX_.'prettypegs_stock_management psm' .
+			//' INNER JOIN '._DB_PREFIX_.'product_lang pl ON psm.id_product = pl.id_product and pl.id_lang = 1'
 			);
 		return $result;
 	}

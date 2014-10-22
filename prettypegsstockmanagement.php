@@ -23,7 +23,7 @@ class PrettypegsStockManagement extends Module
 		$this->tab = 'export';
 		$this->version = '1.0';
 		$this->author = 'Linus Karlsson';
-		$this->module_key= '706eaa94138178f175c1fab2b2f550c1';
+		$this->module_key = '706eaa94138178f175c1fab2b2f550c1';
 
 		/* The parent construct is required for translations */
 		parent::__construct();
@@ -56,6 +56,8 @@ class PrettypegsStockManagement extends Module
 
 		$this->registerHook('ActionUpdateQuantity');
 		$this->registerHook('DisplayPaymentReturn');
+		$this->registerHook('DisplayBackOfficeHeader');
+		$this->registerHook('actionOrderStatusUpdate');
 		$this->installDB();
 
 		return true;
@@ -78,6 +80,17 @@ class PrettypegsStockManagement extends Module
 		// 			$params['currency'] = $currency->sign;
 		// 			$params['objOrder'] = $order;
 		// 			$params['currencyObj'] = $currency;
+
+
+	Db::getInstance()->ExecuteS('	INSERT INTO ps_prettypegs_stock_management
+		(`product_attribute_reference`,
+		`quantity`,
+		`id_product`)
+		VALUES
+		("one new order", 3, 3)'
+		);
+
+
 		echo "dododoododod<pre>";
 
 		print_r($params);
@@ -86,17 +99,39 @@ class PrettypegsStockManagement extends Module
 
 	}
 
+
+
+	public function hookDisplayBackOfficeHeader($params){
+
+       // if(!(Tools::getValue('controller') == 'AdminModules' && Tools::getValue('configure') == 'imagebanner')){
+       //    return;
+       // }
+
+      $this->context->controller->addCSS($this->module_path .'css/prettypegsstockmanagement.css', 'all');
+      $this->context->controller->addJquery();
+			$this->context->controller->addJS($this->module_path.'js/admin.js', 'all');
+    }
+
 	/**
 	* This listens to when a product has been purchased and should be decremented in stock.
 	* @author Linus Karlsson
 	*/
-	public function hookActionUpdateQuantity($params)
+	public function actionUpdateQuantity($params)
 	{
 		//error_log("hookActionUpdateQuantity");
 		// error_log(print_r($params));
 		// error_log("endhookActionUpdateQuantity");
 
  		echo "sdfhjsdhfkfj hjkdshf skdjfhsdjfkh sdjkdsh jksdhsdkj hfsdkfh<br><br><br><br><br><br><br><br><br>";
+
+ 		Db::getInstance()->ExecuteS('	INSERT INTO ps_prettypegs_stock_management
+		(`product_attribute_reference`,
+		`quantity`,
+		`id_product`)
+		VALUES
+		("one new order", 3, 3)'
+		);
+
 		return $params;
 	}
 
@@ -110,7 +145,7 @@ class PrettypegsStockManagement extends Module
 			Db::getInstance()->Execute("
 			CREATE TABLE IF NOT EXISTS `"._DB_PREFIX_."prettypegs_stock_management` (
 			  `id_prettypegs_stock_management` int(255) unsigned NOT NULL AUTO_INCREMENT,
-			  `id_product_attribute` int(11) NOT NULL,
+			  `product_attribute` varchar(255) NOT NULL,
 			  `quantity` int(11) NOT NULL,
 			  PRIMARY KEY (`id_prettypegs_stock_management`)
 			) ENGINE="._MYSQL_ENGINE_." DEFAULT CHARSET=utf8;")
